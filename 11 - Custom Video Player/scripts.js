@@ -6,6 +6,7 @@ const progressBar = player.querySelector('.progress__filled');
 const toggle = player.querySelector('.toggle');
 const skipButtons = player.querySelectorAll('[data-skip]');
 const ranges = player.querySelectorAll('.player__slider');
+const fullscreen = player.querySelector('.full-screen');
 
 function togglePlay() {
   if (video.paused) video.play();
@@ -16,7 +17,42 @@ function updateButton() {
   toggle.textContent = video.paused ? '►' : '❚ ❚';
 }
 
+function skip() {
+  video.currentTime += parseFloat(this.dataset.skip);
+}
+
+function updateRange() {
+  video[this.name] = this.value;
+}
+
+function handleProgress() {
+  const percent = (video.currentTime / video.duration) * 100;
+  progressBar.style.flexBasis = `${percent}%`;
+}
+
+function scrub(e) {
+  const percent = (e.offsetX / progress.offsetWidth) * video.duration;
+  video.currentTime = parseFloat(percent);
+}
+
+function toggleFullScreen() {
+  console.log('to do');
+}
+
 video.addEventListener('click', togglePlay);
 video.addEventListener('play', updateButton);
 video.addEventListener('pause', updateButton);
+video.addEventListener('timeupdate', handleProgress);
 toggle.addEventListener('click', togglePlay);
+skipButtons.forEach(el => el.addEventListener('click', skip));
+ranges.forEach(el => {
+  el.addEventListener('click', updateRange);
+  el.addEventListener('mousemove', updateRange);
+});
+
+let mousedown = false;
+progress.addEventListener('click', scrub);
+progress.addEventListener('mousemove', (e) => mousedown && scrub(e));
+progress.addEventListener('mousedown', () => mousedown = true);
+progress.addEventListener('mouseup', () => mousedown = false);
+fullscreen.addEventListener('mousedown', toggleFullScreen);
