@@ -7,7 +7,6 @@
 </head>
 <body>
 
-
   <div class="keys">
     <div data-key="65" class="key">
       <kbd>A</kbd>
@@ -58,9 +57,28 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
+const keys = [...document.querySelectorAll('.keys > .key')];
+const audio = [...document.querySelectorAll('audio')];
+const reference = {};
 
+for (const k of keys) {
+  const keyCode = k.dataset.key;
+  reference[keyCode] = {};
+  reference[keyCode].button = k;
+  reference[keyCode].audio = audio.find(el => el.dataset.key == keyCode);
+}
+
+document.addEventListener('keyup', (e) =>{
+  if (reference[e.keyCode]) {
+    reference[e.keyCode].audio.currentTime = 0;
+    reference[e.keyCode].audio.play();
+    reference[e.keyCode].button.classList.add('playing');
+
+    setTimeout(function(el) {
+      el.classList.remove('playing');
+    }, 70, reference[e.keyCode].button);
+  }
+});
 </script>
-
-
 </body>
 </html>

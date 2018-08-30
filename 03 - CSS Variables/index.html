@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Scoped CSS Variables and JS</title>
+  <style>
+    :root {
+      --fontsize: 24px;
+      --color: #9c38f7;
+    }
+
+    h2 {
+      font-size: var(--fontsize);
+      color: var(--color);
+    }
+  </style>
+</head>
+
+<body>
+  <input type="range" name="fontsize" value="24" min="0" max="100" data-sizing="px">
+  <input type="color" name="color" value="#9c38f7">
+  <h2>Change my styles!</h2>
+
+  <script>
+    function eventHandler() {
+      const name = this.name;
+      const sizing = this.dataset.sizing || '';
+
+      document.documentElement.style.setProperty(`--${name}`, `${this.value}${sizing}`);
+    }
+
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(el => el.addEventListener('change', eventHandler));
+    inputs.forEach(el => el.addEventListener('mousemove', eventHandler));
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Console Tricks!</title>
+</head>
+
+<body>
+
+  <p onClick="makeGreen()">×BREAK×DOWN×</p>
+
+  <script>
+    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+
+    function makeGreen() {
+      const p = document.querySelector('p');
+      p.style.color = '#BADA55';
+      p.style.fontSize = '50px';
+    }
+
+    // Regular
+
+    // Interpolated
+
+    // Styled
+
+    // warning!
+
+    // Error :|
+
+    // Info
+
+    // Testing
+    console.assert(1 === 2, "Uh oh");
+
+    // clearing
+
+    // Viewing DOM Elements
+    const p = document.querySelector('p');
+    console.dir(p);
+
+    // Grouping together
+    dogs.forEach(dog => {
+      console.groupCollapsed(`${dog.name}`);
+      console.log(`This is ${dog.name}`);
+      console.log(`${dog.name} is ${dog.age} years old`);
+      console.log(`${dog.name} is ${dog.age * 7} dog years old`);
+      console.groupEnd(`${dog.name}`);
+    });
+
+    // counting
+    const a = 'Mal';
+    const b = 'Ash';
+
+    console.count(a);
+    console.count(a);
+    console.count(a);
+    console.count(b);
+    console.count(b);
+    console.count(a);
+    console.count(b);
+    console.count(a);
+    console.count(b);
+    console.count(b);
+
+    // timing
+const t1 = performance.now();
+fetch('https://api.github.com/users/jeffersonlam')
+  .then(res => res.json())
+  .then(res => {
+    console.log(`perf ${performance.now() - t1}ms`);
+    console.log(data);
+});
+
+  </script>
+</body>
+
+</html>
