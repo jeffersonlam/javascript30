@@ -39,7 +39,23 @@
 
 <button></button>
 <script>
+const divs = document.querySelectorAll('div');
 
+function handleClick(e) {
+  console.log(this.classList.value);
+  e.stopPropagation();
+}
+
+divs.forEach(el => el.addEventListener('click', handleClick, {
+  capture: true,
+}));
 </script>
 </body>
 </html>
+
+<div class="one">
+  <div class="two">
+    <div class="three">
+    </div>
+  </div>
+</div>
