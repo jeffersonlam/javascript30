@@ -1,7 +1,7 @@
 html {
   box-sizing: border-box;
-  font-size: 10px;
   background: #ffc600;
+  font-family: sans-serif;
 }
 
 *, *:before, *:after {
@@ -11,14 +11,32 @@ html {
 body {
   padding: 0;
   margin:0;
-  font-family: 'Amatic SC', cursive;
 }
 
 h1 {
+  font-family: 'Amatic SC', cursive;
   text-align: center;
-  font-size: 10rem;
+  font-size: 5em;
   line-height:1;
   margin-bottom: 0;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+button {
+  font-size: 2em;
+  padding: 0.5em 1em;
+  border: none;
+  background-color: #EF6C00;
+  color: white;
+}
+
+button:disabled {
+  opacity: 0.5;
 }
 
 .score {
@@ -29,11 +47,13 @@ h1 {
 }
 
 .game {
-  width:600px;
-  height:400px;
+  width:700px;
+  height:500px;
   display:flex;
   flex-wrap:wrap;
-  margin:0 auto;
+  margin: 50px auto;
+  padding: 50px;
+  background-color: rgba(255,255,255,0.2);
 }
 
 .hole {
@@ -61,9 +81,69 @@ h1 {
   top: 100%;
   width: 100%;
   height: 100%;
-  transition:all 0.4s;
+  transition:all 0.3s;
 }
 
 .hole.up .mole {
   top:0;
+}
+
+table {
+  font-size: 2em;
+  width: 200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+table tr:nth-child(even) {
+  color: #555;
+}
+
+h2 {
+  font-family: 'Amatic SC', cursive;
+  margin: 50px 0 20px;
+  font-size: 4em;
+  text-align: center;
+}
+
+form {
+  display: none;
+  justify-content: center;
+}
+
+input {
+  width: 200px;
+  font-size: 2em;
+  text-transform: uppercase;
+  border: 0;
+  text-align: center;
+}
+
+.popup {
+  position: absolute;
+  transform: 0;
+  font-weight: 600;
+  font-size: 3em;
+  animation: float 0.6s forwards;
+  color: white;
+  opacity: 1;
+  z-index: 3;
+  user-select: none;
+}
+
+@keyframes float {
+  0% {
+    opacity: 1;
+    /* transform: none; */
+  }
+
+  50% {
+    opacity: 1;
+    transform: translatey(-20px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translatey(-20px);
+  }
 }
